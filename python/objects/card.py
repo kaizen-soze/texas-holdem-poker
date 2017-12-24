@@ -5,10 +5,10 @@ class Card:
         self.value = value
         self.suit = suit
         self.suitEmoji = self.__fetchEmoji(suit)
-        self.score = self.calculateScore()
+        self.score = self.__calculateScore()
 
     # Calculate the score of a card
-    def calculateScore(self):
+    def __calculateScore(self):
         score = 0
 
         if self.value == 'A':

@@ -1,12 +1,10 @@
-import random
-
 from python.logic.straight import Straight
 from python.objects.card import Card
 from python.objects.hand import Hand
 
 
 class PlayerHand(Hand):
-    'A representation of the player\'s hand'
+    """A representation of the player's hand"""
 
     def __init__(self):
         self.hand = []
@@ -28,11 +26,10 @@ class PlayerHand(Hand):
     def deal(self, card):
         self.hand.append(card)
         self.hole.append(card)
-        self.individualScore += card.score
         self.__incrementSuit(card)
         self.__sortHand()
 
-    def holeCards(self):
+    def showHoleCards(self):
         for card in self.hole:
             print(card)
 
@@ -40,7 +37,6 @@ class PlayerHand(Hand):
         for card in cards:
             self.hand.append(card)
             self.community.append(card)
-            self.individualScore += card.score
             self.__incrementSuit(card)
 
         self.__sortHand()
@@ -56,6 +52,9 @@ class PlayerHand(Hand):
         elif card.suit == 'S':
             self.spades += 1
 
+        self.__checkForFlush()
+
+    def __checkForFlush(self):
         if (
             self.clubs == 5 or
             self.diamonds == 5 or
@@ -89,10 +88,10 @@ class PlayerHand(Hand):
                 cardSeq3 = self.sortedHand[2:7]
                 cardSequences.append(cardSeq3)
 
-            # We have three sequences of card objects, but
-            # the straight sequences are just the face card value;
-            # A, J, 10, etc. We need to extract the value from
-            # the card objects before proceeding to the comparison
+            # The cardSeqX objects are lists of Card objects, but
+            # the sequences from straight.sequence are lists of
+            # strings. We need to convert our card objects to lists
+            # of strings in order to do the appropriate comparison
             seq1 = []
             seq2 = []
             seq3 = []

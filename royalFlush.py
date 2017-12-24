@@ -49,7 +49,7 @@ community.showRiver()
 playerOne.addCommunityCards(community.river)
 
 print("\nPlayer One Hand:")
-playerOne.holeCards()
+playerOne.showHoleCards()
 playerOne.handStrength = rank.calculateStrength(playerOne)
 
 #print("Clubs: {0} | Diamonds: {1} | Hearts: {2} | Spades: {3}".format(self.clubs, self.diamonds, self.hearts, self.spades))

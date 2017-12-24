@@ -51,22 +51,10 @@ class Rank():
             return False
 
     def isStraightFlush(self, player: PlayerHand):
-        """Returns true if the hand has a sequence of 5 cards suited"""
         return player.hasStraightFlush
 
     def isFourOfAKind(self, player: PlayerHand):
-        hand = player.sortedHand
-        cardValues = []
-        for card in hand:
-            cardValues.append(card.value)
-
-        for value in cardValues:
-            count = cardValues.count(value)
-
-            if count == 4:
-                return True
-
-        return False
+        return self.__xOfAKind(4, player)
 
     def isFullHouse(self, player: PlayerHand):
         hand = player.sortedHand
@@ -76,6 +64,10 @@ class Rank():
 
         appearsThreeTimes = False
         appearsTwoTimes = False
+
+        # These are unique values that are being counted,
+        # so it's impossible for the variables above to
+        # reference the same value
         for value in cardValues:
             count = cardValues.count(value)
 
@@ -90,30 +82,19 @@ class Rank():
             return False
 
     def isFlush(self, player: PlayerHand):
-        """Returns true if the hand has a sequence of 5 cards"""
         return player.hasFlush
 
     def isStraight(self, player: PlayerHand):
-        """Returns true if the hand has a sequence of 5 cards"""
         return player.hasStraight
 
     def isThreeOfAKind(self, player: PlayerHand):
-        """Returns true if the hand has a sequence of 5 cards"""
-        hand = player.sortedHand
-        cardValues = []
-        for card in hand:
-            cardValues.append(card.value)
-
-        for value in cardValues:
-            count = cardValues.count(value)
-
-            if count == 3:
-                return True
-
-        return False
+        return self.__xOfAKind(3, player)
 
     def isTwoOfAKind(self, player: PlayerHand):
-        """Returns true if the hand has a sequence of 5 cards"""
+        return self.__xOfAKind(2, player)
+
+    def __xOfAKind(self, x: int, player: PlayerHand):
+        """Returns true if the hand has x cards with the same value"""
         hand = player.sortedHand
         cardValues = []
         for card in hand:
@@ -122,7 +103,7 @@ class Rank():
         for value in cardValues:
             count = cardValues.count(value)
 
-            if count == 2:
+            if count == x:
                 return True
 
         return False

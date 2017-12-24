@@ -42,7 +42,7 @@ community.showRiver()
 playerOne.addCommunityCards(community.river)
 
 print("\nPlayer One Hand:")
-playerOne.holeCards()
+playerOne.showHoleCards()
 playerOne.handStrength = rank.calculateStrength(playerOne)
 print("Winning hand has a value of {0}".format(playerOne.handStrength))
 

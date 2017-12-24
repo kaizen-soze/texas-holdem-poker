@@ -23,6 +23,7 @@ class Straight():
         straight = ['J', '10', '9', '8', '7']
         seq.append(straight)
 
+        # Generate the remaining sequences with code
         startingValue = 10
         while startingValue > 5:
             temp = []

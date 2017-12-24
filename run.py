@@ -54,13 +54,13 @@ playerTwo.addCommunityCards(community.river)
 playerThree.addCommunityCards(community.river)
 
 print("\nPlayer One Hand:")
-playerOne.holeCards()
+playerOne.showHoleCards()
 playerOne.handStrength = rank.calculateStrength(playerOne)
 
 print("Player Two Hand:")
-playerTwo.holeCards()
+playerTwo.showHoleCards()
 playerTwo.handStrength = rank.calculateStrength(playerTwo)
 
 print("Player Three Hand:")
-playerThree.holeCards()
+playerThree.showHoleCards()
 playerThree.handStrength = rank.calculateStrength(playerThree)
