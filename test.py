@@ -1,3 +1,4 @@
+from python.objects.card import Card
 from python.objects.deck import Deck
 from python.objects.playerHand import PlayerHand
 from python.objects.communityCards import CommunityCards
@@ -11,18 +12,11 @@ deck = Deck()
 print("Dealing to 3 players.\n")
 
 playerOne = PlayerHand()
-playerTwo = PlayerHand()
-playerThree = PlayerHand()
 community = CommunityCards()
 rank = Rank()
 
 playerOne.deal(deck.nextCard())
-playerTwo.deal(deck.nextCard())
-playerThree.deal(deck.nextCard())
-
 playerOne.deal(deck.nextCard())
-playerTwo.deal(deck.nextCard())
-playerThree.deal(deck.nextCard())
 
 print("Flop:")
 
@@ -33,8 +27,6 @@ community.deal(deck.nextCard())
 community.showFlop()
 
 playerOne.addCommunityCards(community.flop)
-playerTwo.addCommunityCards(community.flop)
-playerThree.addCommunityCards(community.flop)
 
 print("\nTurn:")
 deck.burn()
@@ -42,25 +34,17 @@ community.deal(deck.nextCard())
 community.showTurn()
 
 playerOne.addCommunityCards(community.turn)
-playerTwo.addCommunityCards(community.turn)
-playerThree.addCommunityCards(community.turn)
 
 print("\nRiver:")
 deck.burn()
 community.deal(deck.nextCard())
 community.showRiver()
 playerOne.addCommunityCards(community.river)
-playerTwo.addCommunityCards(community.river)
-playerThree.addCommunityCards(community.river)
 
 print("\nPlayer One Hand:")
 playerOne.holeCards()
 playerOne.handStrength = rank.calculateStrength(playerOne)
+print("Winning hand has a value of {0}".format(playerOne.handStrength))
 
-print("Player Two Hand:")
-playerTwo.holeCards()
-playerTwo.handStrength = rank.calculateStrength(playerTwo)
+#print("Clubs: {0} | Diamonds: {1} | Hearts: {2} | Spades: {3}".format(self.clubs, self.diamonds, self.hearts, self.spades))
 
-print("Player Three Hand:")
-playerThree.holeCards()
-playerThree.handStrength = rank.calculateStrength(playerThree)
