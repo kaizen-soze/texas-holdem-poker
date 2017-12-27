@@ -2,6 +2,7 @@ import random
 from collections import deque
 from python.objects.card import Card
 
+
 class Deck:
     'A representation of a deck of cards'
 
@@ -14,6 +15,20 @@ class Deck:
 
     def nextCard(self):
         return self.deck.popleft()
+
+    def prepareFlop(self):
+        """Shuffles deck according to Texas Hold'Em rules."""
+        deck = self.deck
+        random.shuffle(deck)
+        random.shuffle(deck)
+
+        # Split the deck in the top third, give or take 5 cards
+        pivot = random.randint(13, 23)
+        deck.rotate(-pivot)
+
+        # Shuffle one final time
+        random.shuffle(deck)
+
 
     def __createCards(self):
         values = ('A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2')
