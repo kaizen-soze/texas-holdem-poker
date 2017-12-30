@@ -10,26 +10,26 @@ class Rank():
         pass
 
     def calculateStrength(self, hand: PlayerHand):
-        """Calculates the strength of the current hand."""
+        """Calculates the strength of the current hand. Returns a dictionary"""
 
         if self.isRoyalFlush(hand):
-            return 108
+            return {'score': 108, 'name': 'Royal Flush'}
         elif self.isStraightFlush(hand):
-            return 96
+            return {'score': 96, 'name': 'Straight Flush'}
         elif self.isFourOfAKind(hand):
-            return 84
+            return {'score': 84, 'name': 'Four Of A Kind'}
         elif self.isFullHouse(hand):
-            return 72
+            return {'score': 72, 'name': 'Full House'}
         elif self.isFlush(hand):
-            return 60
+            return {'score': 60, 'name': 'Flush'}
         elif self.isStraight(hand):
-            return 48
+            return {'score': 48, 'name': 'Straight'}
         elif self.isThreeOfAKind(hand):
-            return 36
+            return {'score': 36, 'name': 'Three Of A Kind'}
         elif self.isTwoOfAKind(hand):
-            return 24
+            return {'score': 24, 'name': 'Pair'}
         else:
-            return 0
+            return {'score': 0, 'name': 'High Card'}
         
     def isRoyalFlush(self, player: PlayerHand):
         """Returns true if the hand has A K Q J 10 suited"""

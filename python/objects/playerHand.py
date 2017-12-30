@@ -6,13 +6,14 @@ from python.objects.hand import Hand
 class PlayerHand(Hand):
     """A representation of the player's hand"""
 
-    def __init__(self):
+    def __init__(self, name: str):
         self.hand = []
+        self.name = name
         self.sortedHand = []
         self.hole = []
         self.community = []
         self.individualScore = 0
-        self.handStrength = 0
+        self.results = None
         self.handName = ''
         self.clubs = 0
         self.diamonds = 0
@@ -28,6 +29,10 @@ class PlayerHand(Hand):
         self.hole.append(card)
         self.__incrementSuit(card)
         self.__sortHand()
+
+    def calculateScore(self):
+        for card in self.hole:
+            self.individualScore += card.score
 
     def showHoleCards(self):
         for card in self.hole:

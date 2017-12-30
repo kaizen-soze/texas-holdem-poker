@@ -11,9 +11,9 @@ deck.prepareFlop()
 
 print("Dealing to 3 players.\n")
 
-playerOne = PlayerHand()
-playerTwo = PlayerHand()
-playerThree = PlayerHand()
+playerOne = PlayerHand('Player One')
+playerTwo = PlayerHand('Player Two')
+playerThree = PlayerHand('Player Three')
 community = CommunityCards()
 rank = Rank()
 
@@ -56,17 +56,48 @@ playerThree.addCommunityCards(community.river)
 
 print("\nPlayer One Hand:")
 playerOne.showHoleCards()
-playerOne.handStrength = rank.calculateStrength(playerOne)
-print("Strength: {0}".format(playerOne.handStrength))
+playerOne.results = rank.calculateStrength(playerOne)
+print("Strength: {0}".format(playerOne.results['score']))
 
 print("Player Two Hand:\n")
 playerTwo.showHoleCards()
-playerTwo.handStrength = rank.calculateStrength(playerTwo)
-print("Strength: {0}".format(playerTwo.handStrength))
+playerTwo.results = rank.calculateStrength(playerTwo)
+print("Strength: {0}".format(playerTwo.results['score']))
 
 print("Player Three Hand:\n")
 playerThree.showHoleCards()
-playerThree.handStrength = rank.calculateStrength(playerThree)
-print("Strength: {0}".format(playerThree.handStrength))
+playerThree.results = rank.calculateStrength(playerThree)
+print("Strength: {0}".format(playerThree.results['score']))
 
+players = (playerOne, playerTwo, playerThree)
 
+highestHand = 0
+highestScore = 0
+winningPlayer = None
+tie = []
+
+for player in players:
+    # Calculate the score for their hand
+    player.calculateScore()
+
+    if player.results['score'] > highestHand:
+        highestHand = player.results['score']
+        winningPlayer = player
+        del tie[:]
+    elif (player.results['score'] == highestHand
+          and player.individualScore > highestScore):
+            highestScore = player.individualScore
+            winningPlayer = player
+            del tie[:]
+    elif (player.results['score'] == highestHand
+          and player.individualScore == highestScore):
+        tie.append(winningPlayer)
+        tie.append(player)
+
+if len(tie) == 0:
+    print("The winning player is {0} with a {1}"
+          .format(winningPlayer.name, winningPlayer.results['name']))
+else:
+    for player in tie:
+        print("We have a tie!")
+        print("{0} had a {1}".format(player.name, player.results['name']))

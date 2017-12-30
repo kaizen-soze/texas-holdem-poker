@@ -29,9 +29,10 @@ class Deck:
         # Shuffle one final time
         random.shuffle(deck)
 
-
     def __createCards(self):
-        values = ('A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2')
+        values = ('A', 'K', 'Q', 'J', '10', '9',
+                  '8', '7', '6', '5', '4', '3',
+                  '2')
         suits = ('H', 'S', 'D', 'C')
 
         deck = deque()
@@ -45,7 +46,7 @@ class Deck:
         self.deck = deck
 
     def __str__(self):
-        completeDeck = '';
+        completeDeck = ''
         for card in self.deck:
             completeDeck += str(card) + "\n"
 
