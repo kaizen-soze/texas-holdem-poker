@@ -4,6 +4,7 @@ app = Flask(__name__)
 # gunicorn --bind 0.0.0.0:5000 wsgi:app
 # Run from the command line
 
+# https://www.digitalocean.com/community/tutorials/how-to-structure-large-flask-applications#structuring-the-application-directory
 
 @app.route('/')
 def index():
