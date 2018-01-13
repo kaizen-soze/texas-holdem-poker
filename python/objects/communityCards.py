@@ -30,9 +30,7 @@ class CommunityCards(Hand):
         """Prints the cards in the Flop to the screen."""
         # We only need to print individual card objects,
         # so there's no need to set up a loop
-        print(self.hand[0])
-        print(self.hand[1])
-        print(self.hand[2])
+        return [self.hand[0], self.hand[1], self.hand[2]]
 
     def showTurn(self):
         """Prints the Turn card to the screen."""
